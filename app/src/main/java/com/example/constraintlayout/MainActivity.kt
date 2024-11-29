@@ -8,13 +8,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
-import java.util.*
 
-class MainActivity : AppCompatActivity() , TextToSpeech.OnInitListener {
-    private lateinit var tts: TextToSpeech
+class MainActivity : AppCompatActivity(){
+    private lateinit var tts: TtsManager
     private lateinit var edtConta: EditText
     private lateinit var inputPeople: EditText
-    private var ttsSucess: Boolean = false;
+
 
     private var moneyToSplit: Double = 0.0
     private var peapleNumber: Int = 0
@@ -65,42 +64,26 @@ class MainActivity : AppCompatActivity() , TextToSpeech.OnInitListener {
 
 
         // Initialize TTS engine
-        tts = TextToSpeech(this, this)
+        tts = TtsManager(this)
 
     }
-
 
 
 // Fazer uma validação para não deixar colocar 0 Pessoas
     fun clickFalar(v: View){
-        Log.d ("teste", this.inputPeople.text.toString())
-        if (tts.isSpeaking) {
-            tts.stop()
-        }
-        if(ttsSucess) {
 
-            tts.speak("Você tem $moneyToSplit Reais a ser pago por $peapleNumber Pessoas, que dá ${moneyToSplit/peapleNumber} reais para cada um.", TextToSpeech.QUEUE_FLUSH, null, null)
-        }
+        tts.clickFalar(v, peapleNumber, moneyToSplit)
+
+//        Log.d ("teste", this.inputPeople.text.toString())
+//        if (tts.isSpeaking) {
+//            tts.stop()
+//        }
+//        if(ttsSucess ) {
+//
+//            tts.speak("Você tem $moneyToSplit Reais a ser pago por $peapleNumber Pessoas, que dá ${moneyToSplit/peapleNumber} reais para cada um.", TextToSpeech.QUEUE_FLUSH, null, null)
+//        }
     }
-    override fun onDestroy() {
-            // Release TTS engine resources
-            tts.stop()
-            tts.shutdown()
-            super.onDestroy()
-        }
 
-    override fun onInit(status: Int) {
-            if (status == TextToSpeech.SUCCESS) {
-                // TTS engine is initialized successfully
-                tts.language = Locale.getDefault()
-                ttsSucess=true
-                Log.d("PDM23","Sucesso na Inicialização")
-            } else {
-                // TTS engine failed to initialize
-                Log.e("PDM23", "Failed to initialize TTS engine.")
-                ttsSucess=false
-            }
-        }
 
 
 }
