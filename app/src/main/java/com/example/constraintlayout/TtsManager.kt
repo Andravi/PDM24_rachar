@@ -13,12 +13,10 @@ class TtsManager(context: AppCompatActivity) : TextToSpeech.OnInitListener {
     private var ttsSucess: Boolean = false;
 
 
-//    override fun onDestroy() {
-//        // Release TTS engine resources
-//        tts.stop()
-//        tts.shutdown()
-//        super.onDestroy()
-//    }
+    fun destroy() {
+        tts.stop()
+        tts.shutdown()
+    }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
