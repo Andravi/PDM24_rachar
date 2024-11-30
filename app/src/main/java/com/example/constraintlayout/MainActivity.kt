@@ -1,5 +1,6 @@
 package com.example.constraintlayout
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -35,10 +36,6 @@ class MainActivity : AppCompatActivity(){
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                     if(s.toString().isNotEmpty()) {
-                        if (s.toString().toDouble() <= 0) {
-                            // fazer alguma coisa para mostrar que não
-                            return
-                        }
                         moneyToSplit = s.toString().toDouble()
                         Log.d("PDM24", "v: $moneyToSplit")
                         updatePrice()
@@ -58,11 +55,6 @@ class MainActivity : AppCompatActivity(){
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                     if(s.toString().isNotEmpty()) {
-                        if (s.toString().toDouble() <= 0) {
-                            // fazer alguma coisa para mostrar que não
-                            return
-                        }
-
                         peapleNumber = s.toString().toInt()
                         Log.d("PDM24", "v: $peapleNumber")
                         updatePrice()
@@ -77,8 +69,13 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun updatePrice() {
-        var moneySplitted = moneyToSplit / peapleNumber
-        texPrice.text = String.format("R$ %.2f", moneySplitted)
+
+        if ((moneyToSplit <= 0) or (peapleNumber <= 0))  {
+            texPrice.text = "R$ 0,00"
+            return
+        }
+
+        texPrice.text = String.format("R$ %.2f", (moneyToSplit / peapleNumber))
     }
 
     override fun onDestroy() {
@@ -89,6 +86,17 @@ class MainActivity : AppCompatActivity(){
 // Fazer uma validação para não deixar colocar 0 Pessoas
     fun clickFalar(v: View){
         tts.clickFalar(v, peapleNumber, moneyToSplit)
+    }
+
+    fun clickShare(v: View) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Olá amigo, você tem que me passar ${texPrice.text}. Me manda no pix -> [Insira seu pix]")
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, "Algo")
+        startActivity(shareIntent)
+
     }
 
 }
