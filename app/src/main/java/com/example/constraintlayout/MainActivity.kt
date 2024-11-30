@@ -31,14 +31,24 @@ class MainActivity : AppCompatActivity(){
                 }
 
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
+
+
                     if(s.toString().isNotEmpty()) {
-                        moneyToSplit = s.toString().toDouble()
+                        if ((s?.count { it == ',' } ?: 0) <= 1) { // FAlTA TERMINAR AQUI PRA NÃO PERMITIR MAIS DE UMA ','
+                            Log.d("teste", edtConta.text.toString().replace(',', '.'))
+                            return
+                        }
+                        moneyToSplit = s.toString().replace(',', '.').toDouble()
                         Log.d("PDM24", "v: $moneyToSplit")
                         updatePrice()
+                    } else {
+                        texPrice.text = "R$ 0,00"
+                        moneyToSplit = 0.0
                     }
 
                 }
@@ -58,6 +68,9 @@ class MainActivity : AppCompatActivity(){
                         peapleNumber = s.toString().toInt()
                         Log.d("PDM24", "v: $peapleNumber")
                         updatePrice()
+                    } else {
+                        texPrice.text = "R$ 0,00"
+                        peapleNumber = 0
                     }
 
                 }
