@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPeople" />
+        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -51,11 +51,11 @@
         android:layout_marginTop="16dp"
         android:contentDescription="Compre suas cartas Pokemon"
         android:onClick="clickFalar"
-        android:text="Comprar"
+        android:text="Compartilhar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btFalar"
-        app:layout_constraintTop_toBottomOf="@+id/inputPeople" />
+        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
 
     <EditText
         android:id="@+id/edtConta"
@@ -76,11 +76,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
         android:ems="10"
-        android:hint="Insira o valor da conta"
+        android:hint="Insira o Num de Pessoas"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtConta" />
+
+    <TextView
+        android:id="@+id/textPrice"
+        android:layout_width="210dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:text="R$ 0,00"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPeople" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

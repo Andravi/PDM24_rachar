@@ -7,10 +7,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity(){
     private lateinit var tts: TtsManager
     private lateinit var edtConta: EditText
+    private lateinit var texPrice: TextView
     private lateinit var inputPeople: EditText
 
     private var moneyToSplit: Double = 0.0
@@ -21,26 +23,27 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        texPrice = findViewById<TextView>(R.id.textPrice)
         edtConta = findViewById<EditText>(R.id.edtConta).apply {
             addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
-                    Log.d("PDM24","Antes de mudar")
                 }
 
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                    Log.d("PDM24","Mudando")
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    Log.d ("PDM24", "Depois de mudar")
-
-                    val valor: Double
 
                     if(s.toString().isNotEmpty()) {
+                        if (s.toString().toDouble() <= 0) {
+                            // fazer alguma coisa para mostrar que não
+                            return
+                        }
                         moneyToSplit = s.toString().toDouble()
                         Log.d("PDM24", "v: $moneyToSplit")
-                        //    edtConta.setText("9")
+                        updatePrice()
                     }
+
                 }
             })
         }
@@ -53,13 +56,29 @@ class MainActivity : AppCompatActivity(){
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    Log.d("PDM24","People mudado")
+
+                    if(s.toString().isNotEmpty()) {
+                        if (s.toString().toDouble() <= 0) {
+                            // fazer alguma coisa para mostrar que não
+                            return
+                        }
+
+                        peapleNumber = s.toString().toInt()
+                        Log.d("PDM24", "v: $peapleNumber")
+                        updatePrice()
+                    }
+
                 }
             })
         }
 
         tts = TtsManager(this)
 
+    }
+
+    private fun updatePrice() {
+        var moneySplitted = moneyToSplit / peapleNumber
+        texPrice.text = String.format("R$ %.2f", moneySplitted)
     }
 
     override fun onDestroy() {
@@ -69,7 +88,6 @@ class MainActivity : AppCompatActivity(){
 
 // Fazer uma validação para não deixar colocar 0 Pessoas
     fun clickFalar(v: View){
-
         tts.clickFalar(v, peapleNumber, moneyToSplit)
     }
 
