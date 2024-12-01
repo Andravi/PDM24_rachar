@@ -1,5 +1,6 @@
 package com.example.constraintlayout
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,21 +32,22 @@ class MainActivity : AppCompatActivity(){
                 }
 
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if(s.toString().isNotEmpty() && s != null) {
 
+                        if ((s.count { it == ',' }  > 1) or (s.toString() == ",")  ) {
+                            val newNumber = s.substring(0, s.length - 1)
+                            edtConta.setText(newNumber)
+                            edtConta.setSelection(s.length - 1)
 
-
-                    if(s.toString().isNotEmpty()) {
-                        if ((s?.count { it == ',' } ?: 0) <= 1) { // FAlTA TERMINAR AQUI PRA NÃO PERMITIR MAIS DE UMA ','
-                            Log.d("teste", edtConta.text.toString().replace(',', '.'))
-                            return
+                        } else {
+                            moneyToSplit = s.toString().replace(',', '.').toDouble()
                         }
-                        moneyToSplit = s.toString().replace(',', '.').toDouble()
-                        Log.d("PDM24", "v: $moneyToSplit")
                         updatePrice()
+
+
                     } else {
                         texPrice.text = "R$ 0,00"
                         moneyToSplit = 0.0
@@ -81,6 +83,7 @@ class MainActivity : AppCompatActivity(){
 
     }
 
+    @SuppressLint("DefaultLocale", "SetTextI18n")
     private fun updatePrice() {
 
         if ((moneyToSplit <= 0) or (peapleNumber <= 0))  {
