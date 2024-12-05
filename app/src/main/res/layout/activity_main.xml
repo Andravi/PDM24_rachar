@@ -14,6 +14,7 @@
         android:text="Vamos Rachar a conta !"
         android:textAlignment="viewStart"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +38,7 @@
         android:layout_marginTop="32dp"
         android:text="Quanto foi o prejuízo:"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bill_split_label" />
@@ -61,6 +63,7 @@
         android:layout_marginTop="16dp"
         android:text="Quantos vão ficar lisos:"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtConta" />
@@ -85,6 +88,7 @@
         android:layout_marginTop="36dp"
         android:text="R$"
         android:textAlignment="center"
+        android:textColor="@color/dark_blue"
         android:textSize="60sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_title" />
@@ -96,6 +100,7 @@
         android:text="0,00"
         android:textAlignment="center"
         android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/bill_split_label"
         app:layout_constraintStart_toStartOf="@+id/bill_split_label"
         app:layout_constraintTop_toTopOf="@+id/currency" />
@@ -108,7 +113,9 @@
         android:layout_marginTop="40dp"
         android:onClick="clickFalar"
         android:text="Ouvir"
+        android:textStyle="bold"
         app:icon="@android:drawable/ic_lock_silent_mode_off"
+        app:iconTint="@color/dark_blue"
         app:layout_constraintEnd_toStartOf="@+id/btnShare"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPeople" />
@@ -118,10 +125,12 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="30dp"
         android:onClick="clickShare"
         android:text="Compartilhar"
+        android:textStyle="bold"
         app:icon="?attr/actionModeShareDrawable"
+        app:iconTint="@color/dark_blue"
         app:iconTintMode="multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPeople" />
