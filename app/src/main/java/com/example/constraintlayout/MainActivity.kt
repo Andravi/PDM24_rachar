@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                         updatePrice()
                     } else {
                         // Enquanto não houver nenhum valor o app vai mostrar o valor de zero reais
-                        texPrice.text = "R$ 0,00" // Não seria melhor exibir o valor cheio no lugar
+                        texPrice.text = "0,00" // Não seria melhor exibir o valor cheio no lugar
 
                         // Reseta a quantidade de pessoas, assim caso um valor seja digitado e apagado,
                         // deixando o campo vazio novamente, a divisão é resetada, similar ao edtConta
@@ -114,11 +114,11 @@ class MainActivity : AppCompatActivity() {
     private fun updatePrice() {
         // Verifica se o valor da conta ou o número de pessoas são inválidos
         if ((moneyToSplit <= 0) or (peopleNumber <= 0)) {
-            texPrice.text = "R$ 0,00"
+            texPrice.text = "0,00"
             return
         }
         // Calcula o valor dividido e atualiza o texto no TextView
-        texPrice.text = String.format("R$ %.2f", (moneyToSplit / peopleNumber))
+        texPrice.text = String.format("%.2f", (moneyToSplit / peopleNumber))
     }
 
 
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             // Define a ação de envio
             action = Intent.ACTION_SEND
             // Mensagem personalizada
-            putExtra(Intent.EXTRA_TEXT, "Olá amigo,nossa conta deu R$ ${edtConta.text} e você tem que me passar ${texPrice.text}. Me manda no pix -> [Insira aqui seu pix]")
+            putExtra(Intent.EXTRA_TEXT, "Olá amigo,nossa conta deu R$ ${edtConta.text} e você tem que me passar R$ ${texPrice.text}. Me manda no pix -> [Insira aqui seu pix]")
             // Define o tipo de conteúdo a ser compartilhado
             type = "text/plain"
         }
