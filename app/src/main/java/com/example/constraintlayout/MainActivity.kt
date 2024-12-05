@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                         updatePrice()
                     } else {
                         // Enquanto não houver nenhum valor o app vai mostrar o valor de zero reais
-                        texPrice.text = "R$ 0,00"
+                        texPrice.text = "0,00"
 
                         // Reseta o valor da conta, assim caso um valor seja digitado e apagado,
                         // deixando o campo vazio novamente, a divisão é resetada
