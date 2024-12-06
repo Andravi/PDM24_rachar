@@ -7,93 +7,132 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/label_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="Esqueleto do Vamos Rachar"
+        android:layout_marginTop="80dp"
+        android:text="Vamos Rachar a conta !"
+        android:textAlignment="viewStart"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtConta"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btFalar"
+    <TextView
+        android:id="@+id/bill_split_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="50dp"
-        android:onClick="clickFalar"
-        android:text="Falar"
-        app:layout_constraintEnd_toStartOf="@+id/btnShare"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="125dp"
+        android:text="por pessoa"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPrice" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+    <TextView
+        android:id="@+id/bill_input_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="83dp"
-        android:clickable="true"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:text="Quanto foi o prejuízo:"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShare"
-        app:srcCompat="?attr/actionModeShareDrawable" />
-
-    <Button
-        android:id="@+id/btnShare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:contentDescription="Compre suas cartas Pokemon"
-        android:onClick="clickShare"
-        android:text="Compartilhar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btFalar"
-        app:layout_constraintTop_toBottomOf="@+id/textPrice" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bill_split_label" />
 
     <EditText
         android:id="@+id/edtConta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginTop="8dp"
         android:digits="0123456789,"
+        android:ems="10"
         android:hint="Insira o valor da conta"
         android:inputType="number|numberDecimal|numberSigned"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/bill_input_label" />
+
+    <TextView
+        android:id="@+id/payers_input_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Quantos vão ficar lisos:"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtConta" />
 
     <EditText
         android:id="@+id/inputPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Insira o Num de Pessoas"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtConta" />
+        app:layout_constraintTop_toBottomOf="@+id/payers_input_label" />
+
+    <TextView
+        android:id="@+id/currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="36dp"
+        android:text="R$"
+        android:textAlignment="center"
+        android:textColor="@color/dark_blue"
+        android:textSize="60sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_title" />
 
     <TextView
         android:id="@+id/textPrice"
-        android:layout_width="210dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="8dp"
-        android:text="R$ 0,00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0,00"
         android:textAlignment="center"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/bill_split_label"
+        app:layout_constraintStart_toStartOf="@+id/bill_split_label"
+        app:layout_constraintTop_toTopOf="@+id/currency" />
+
+    <Button
+        android:id="@+id/btnFalar"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
+        android:onClick="clickFalar"
+        android:text="Ouvir"
+        android:textStyle="bold"
+        app:icon="@android:drawable/ic_lock_silent_mode_off"
+        app:iconTint="@color/dark_blue"
+        app:layout_constraintEnd_toStartOf="@+id/btnShare"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPeople" />
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:onClick="clickShare"
+        android:text="Compartilhar"
+        android:textStyle="bold"
+        app:icon="?attr/actionModeShareDrawable"
+        app:iconTint="@color/dark_blue"
+        app:iconTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPeople" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
